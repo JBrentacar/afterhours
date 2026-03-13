@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JBレンタカー 石巻店 - ご案内</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ヘッダー */
+        header {
+            background-color: #0068e9;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo-sub {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-top: 4px;
+        }
+
+        /* 営業時間外バナー */
+        .closed-banner {
+            background-color: #fff3cd;
+            border-bottom: 3px solid #ffc600;
+            padding: 16px 20px;
+            text-align: center;
+        }
+
+        .closed-banner .icon {
+            font-size: 24px;
+        }
+
+        .closed-banner p {
+            margin: 6px 0 0;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .closed-banner strong {
+            color: #333;
+            font-size: 17px;
+        }
+
+        /* メインコンテンツ */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        /* セクション共通 */
+        .section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0068e9;
+            border-left: 4px solid #ffc600;
+            padding-left: 12px;
+            margin: 0 0 18px;
+        }
+
+        /* 利用開始までの流れ */
+        .flow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .flow-step-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .step-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: #0068e9;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step-line {
+            width: 2px;
+            flex: 1;
+            min-height: 28px;
+            background-color: #d0e4ff;
+            margin: 4px 0;
+        }
+
+        .flow-step:last-child .step-line {
+            display: none;
+        }
+
+        .flow-step-content {
+            padding: 6px 0 24px;
+        }
+
+        .flow-step-content h3 {
+            margin: 0 0 4px;
+            font-size: 16px;
+            color: #222;
+        }
+
+        .flow-step-content p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .flow-step-content .tag {
+            display: inline-block;
+            background-color: #e8f0fe;
+            color: #0068e9;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-top: 6px;
+            font-weight: bold;
+        }
+
+        /* ボタンカード */
+        .button-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .button-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background-color: white;
+            border: 2px solid #e0eaff;
+            border-radius: 12px;
+            padding: 18px 20px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.2s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+
+        .button-card:hover {
+            border-color: #0068e9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,104,233,0.15);
+        }
+
+        .button-card-icon {
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+
+        .button-card-text h3 {
+            margin: 0 0 4px;
+            font-size: 17px;
+            color: #0068e9;
+        }
+
+        .button-card-text p {
+            margin: 0;
+            font-size: 13px;
+            color: #777;
+            line-height: 1.5;
+        }
+
+        .button-card-arrow {
+            margin-left: auto;
+            font-size: 20px;
+            color: #0068e9;
+            flex-shrink: 0;
+        }
+
+        /* 問い合わせボタン */
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background-color: #ffc600;
+            color: #333;
+            font-weight: bold;
+            font-size: 17px;
+            padding: 16px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(255,198,0,0.35);
+            transition: all 0.2s;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .contact-btn:hover {
+            background-color: #ffb400;
+            transform: translateY(-2px);
+        }
+
+        .contact-note {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #888;
+        }
+
+        /* フッター */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 13px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">JBレンタカー</div>
+        <div class="logo-sub">石巻店｜中長期専門レンタカー</div>
+    </header>
+
+    <div class="closed-banner">
+        <div class="icon">🌙</div>
+        <strong>現在、営業時間外です</strong>
+        <p>お問い合わせは翌営業日（水曜除く平日）に対応いたします。<br>以下より事前にご確認いただけます。</p>
+    </div>
+
+    <div class="container">
+
+        <!-- 利用開始までの流れ -->
+        <div class="section">
+            <div class="section-title">ご利用開始までの流れ</div>
+            <div class="flow-steps">
+
+                <div class="flow-step">
+                    <div class="flow-step-left">
+                        <div class="step-circle">1</div>
+                        <div class="step-line"></div>
+                    </div>
+                    <div class="flow-step-content">
+                        <h3>料金・プランを確認する</h3>
+                        <p>ご希望の期間・車両クラスで料金をシミュレーションできます。</p>
+                        <span class="tag">↓ 下のセルフ見積もりボタンから</span>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="flow-step-left">
+                        <div class="step-circle">2</div>
+                        <div class="step-line"></div>
+                    </div>
+                    <div class="flow-step-content">
+                        <h3>空き状況をお問い合わせ</h3>
+                        <p>ご利用日の約10日前を目安にお問い合わせください。確認後、折り返しご連絡いたします。</p>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="flow-step-left">
+                        <div class="step-circle">3</div>
+                        <div class="step-line"></div>
+                    </div>
+                    <div class="flow-step-content">
+                        <h3>ご契約・お支払い</h3>
+                        <p>車両お引き渡し時にクレジットカード（暗証番号必須）でお支払いいただきます。</p>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="flow-step-left">
+                        <div class="step-circle">4</div>
+                        <div class="step-line"></div>
+                    </div>
+                    <div class="flow-step-content">
+                        <h3>車両お引き渡し</h3>
+                        <p>店舗にてお引き渡しとなります。30日以上の場合は宮城県内への無料配送も対応しております。</p>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="flow-step-left">
+                        <div class="step-circle">5</div>
+                    </div>
+                    <div class="flow-step-content">
+                        <h3>ご利用開始</h3>
+                        <p>最短7日間〜ご利用いただけます。ご返却は石巻店までお越しください。</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ご案内リンク -->
+        <div class="section">
+            <div class="section-title">事前にご確認いただけます</div>
+            <div class="button-cards">
+                <a href="https://jbrentacar.github.io/FeeCalculation/" target="_blank" class="button-card">
+                    <div class="button-card-icon">🧮</div>
+                    <div class="button-card-text">
+                        <h3>セルフ見積もり</h3>
+                        <p>ご利用日数・車種・オプションを選んで<br>料金をその場で確認できます</p>
+                    </div>
+                    <div class="button-card-arrow">›</div>
+                </a>
+
+                <a href="https://jbrentacar.github.io/faq/" target="_blank" class="button-card">
+                    <div class="button-card-icon">💬</div>
+                    <div class="button-card-text">
+                        <h3>よくあるご質問</h3>
+                        <p>料金・車両・ご利用条件など<br>よくあるご質問をまとめています</p>
+                    </div>
+                    <div class="button-card-arrow">›</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 問い合わせ -->
+        <div class="section contact-section">
+            <div class="section-title">翌営業日にお問い合わせ</div>
+            <a href="https://jb-rentacar.com/miyagi/#contact" target="_blank" class="contact-btn">
+                📩 お問い合わせフォームへ
+            </a>
+            <p class="contact-note">営業時間：平日 10:00〜17:00（水曜定休）</p>
+        </div>
+
+    </div>
+
+    <footer>
+        © JBレンタカー 石巻店
+    </footer>
+
+</body>
+</html>
