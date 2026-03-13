@@ -241,6 +241,16 @@
             color: #888;
         }
 
+        /* 営業中バナー */
+        .open-banner {
+            background-color: #e6f4ea;
+            border-bottom: 3px solid #34a853;
+        }
+
+        .open-banner strong {
+            color: #1e7e34 !important;
+        }
+
         /* フッター */
         footer {
             text-align: center;
@@ -257,10 +267,10 @@
         <div class="logo-sub">石巻店｜中長期専門レンタカー</div>
     </header>
 
-    <div class="closed-banner">
-        <div class="icon">🌙</div>
-        <strong>現在、営業時間外です</strong>
-        <p>お問い合わせは翌営業日（水曜除く平日）に対応いたします。<br>以下より事前にご確認いただけます。</p>
+    <div id="banner" class="closed-banner">
+        <div id="banner-icon" class="icon">🌙</div>
+        <strong id="banner-title">現在、営業時間外です</strong>
+        <p id="banner-msg">以下より料金確認・よくある質問をご覧いただけます。</p>
     </div>
 
     <div class="container">
@@ -358,7 +368,7 @@
             <a href="https://jb-rentacar.com/miyagi/#contact" target="_blank" class="contact-btn">
                 📩 お問い合わせフォームへ
             </a>
-            <p class="contact-note">営業時間：平日 10:00〜17:00（水曜定休）</p>
+            <p class="contact-note">営業時間：月・火・木・金 9:00〜18:00 ／ 土・日 10:00〜16:00<br>（水曜・祝日定休）</p>
         </div>
 
     </div>
@@ -367,5 +377,60 @@
         © JBレンタカー 石巻店
     </footer>
 
+
+<script>
+    (function () {
+        // 日本の祝日リスト (2025-2026)
+        const holidays = [
+            "2025-01-01","2025-01-13","2025-02-11","2025-02-23","2025-02-24",
+            "2025-03-20","2025-04-29","2025-05-03","2025-05-04","2025-05-05",
+            "2025-05-06","2025-07-21","2025-08-11","2025-09-15","2025-09-23",
+            "2025-10-13","2025-11-03","2025-11-23","2025-11-24","2025-12-23",
+            "2026-01-01","2026-01-12","2026-02-11","2026-02-23","2026-03-20",
+            "2026-04-29","2026-05-03","2026-05-04","2026-05-05","2026-05-06",
+            "2026-07-20","2026-08-11","2026-09-21","2026-09-22","2026-09-23",
+            "2026-10-12","2026-11-03","2026-11-23"
+        ];
+
+        function isOpen() {
+            const now = new Date();
+            const dow = now.getDay(); // 0=日, 1=月, ..., 6=土
+            const h = now.getHours();
+            const m = now.getMinutes();
+            const time = h * 60 + m;
+
+            // 日付文字列 YYYY-MM-DD
+            const pad = n => String(n).padStart(2, '0');
+            const dateStr = now.getFullYear() + '-' + pad(now.getMonth()+1) + '-' + pad(now.getDate());
+
+            // 水曜(3)・祝日は定休
+            if (dow === 3 || holidays.includes(dateStr)) return false;
+
+            // 土日: 10:00〜16:00
+            if (dow === 0 || dow === 6) {
+                return time >= 600 && time < 960;
+            }
+
+            // 平日(月火木金): 9:00〜18:00
+            return time >= 540 && time < 1080;
+        }
+
+        const banner = document.getElementById('banner');
+        const icon   = document.getElementById('banner-icon');
+        const title  = document.getElementById('banner-title');
+        const msg    = document.getElementById('banner-msg');
+
+        if (isOpen()) {
+            banner.classList.add('open-banner');
+            icon.textContent  = '☀️';
+            title.textContent = '現在、営業中です';
+            msg.textContent   = 'お電話・フォームよりお気軽にお問い合わせください。';
+        } else {
+            icon.textContent = '🌙';
+            title.textContent = '現在、営業時間外です';
+            msg.innerHTML = '以下より料金確認・よくある質問をご覧いただけます。';
+        }
+    })();
+</script>
 </body>
 </html>
